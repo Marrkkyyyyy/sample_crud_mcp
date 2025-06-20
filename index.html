@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Notes App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Notes</h1>
+        </header>
+        
+        <main>
+            <div class="note-form">
+                <input type="text" id="noteTitle" placeholder="Note title..." maxlength="100">
+                <textarea id="noteContent" placeholder="Write your note here..." rows="4"></textarea>
+                <div class="form-buttons">
+                    <button id="addNoteBtn" class="btn btn-primary">Add Note</button>
+                    <button id="updateNoteBtn" class="btn btn-secondary" style="display: none;">Update Note</button>
+                    <button id="cancelEditBtn" class="btn btn-cancel" style="display: none;">Cancel</button>
+                </div>
+            </div>
+            
+            <div class="notes-container">
+                <div id="notesGrid" class="notes-grid">
+                    <!-- Notes will be dynamically added here -->
+                </div>
+                <div id="loadingSpinner" class="loading" style="display: none;">Loading...</div>
+                <div id="emptyState" class="empty-state">
+                    <p>No notes yet. Create your first note above!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        
+        // Your Firebase config will go here
+        window.firebaseConfig = {
+            // Replace with your Firebase configuration
+            apiKey: "your-api-key",
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "your-app-id"
+        };
+        
+        // Initialize Firebase
+        window.app = initializeApp(window.firebaseConfig);
+        window.db = getFirestore(window.app);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
